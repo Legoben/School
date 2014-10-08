@@ -1,0 +1,34 @@
+<!doctype>
+<html>
+    <head>
+        <title>Server Log</title>
+    </head>
+    <body>
+        <h1><u>http://BenS.li/socket</u> status:</h1>
+        
+        <div id="log">
+        
+        </div>
+        
+        
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script>
+            
+            var ws = new WebSocket("ws://localhost:9008/ws?log=true");
+            ws.onmessage = function(msg){
+                json = JSON.parse(msg.data);
+                var date = new Date();
+                if(json.event == 'received'){
+                    $('#log').append("<span style='background-color:green; color:white;'>"+date + ' Message Received: ' + JSON.stringify(json.body) + '</span><br>')    
+                } else if(json.event == 'sent'){
+                    $('#log').append("<span style='background-color:red; color:white;'>"+date + ' Message Sent: ' + JSON.stringify(json.body) + '</span><br>')    
+                } else {
+                    $('#log').append("<span>"+date +': ' + msg.data + '</span><br>')
+                }
+                
+                window.scrollTo(0, document.body.scrollHeight)
+            }
+        </script>
+    </body>
+
+</html>

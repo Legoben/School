@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>WebSockets Are Changing The Internet</title>
+
+    <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+    <meta name="author" content="Hakim El Hattab">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+        if (window.location.search.match(/print-pdf/gi)) {
+            var link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = 'css/print/pdf.css';
+            document.getElementsByTagName('head')[0].appendChild(link);
+        }
+    </script>
+
+    <!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+
+    <style>
+        .form {
+            font-size: 20px !important;
+        }
+        #recipewars {
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ToDo Make Controller -->
+
+
+    <div class="reveal">
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+            <section>
+                <h1>WebSockets Are Changing The Internet</h1>
+                <h3>By Ben Stobaugh</h3>
+            </section>
+
+            <section>
+                <section>
+                    <h2>What are websockets?</h2>
+                    <img src="http://www.clker.com/cliparts/9/1/4/0/11954322131712176739question_mark_naught101_02.svg.med.png">
+                    <aside class="notes">
+                        So, what are WebSockets? Websockets is a an easy and univerally supported protocol used to achieve bidirectional communication between the server and the client. In other words, it allows me to do stuff like this: **Next Slide**
+                    </aside>
+                </section>
+                <section>
+                    <h2>*Poof*</h2>
+                    <img src="http://www.vipaq.com/Assets/Images/201404/13981365786689.png">
+
+                    <aside class="notes">
+                        What just happened there was I sent a message to the WebSocket Server I'm running and it, in turn, sent a message to all of you telling you to go to the next slide.
+                    </aside>
+                </section>
+            </section>
+
+
+
+            <!-- Example of nested vertical slides -->
+            <section>
+                <section>
+                    <h2>A Step Back</h2>
+                    <img src="http://www.theegglestongroup.com/formsource/images/basic_forms_flow.gif">
+
+                    <aside class="notes">
+                        In order to understand WebSockets we really need to take a step back and try to understand how the internet works. Back when the internet was made the only get informtion to the server was by using the form element. The form element worked by sending the user's data to the server via HTTP request, which required the client to either refresh or be redirected to a different page. *Refresh* That's not fun, right?
+                    </aside>
+                </section>
+                <section>
+                    <h2>And Then, AJAX</h2>
+                    <img src="http://www.webstepbook.com/supplements/slides/images/ajax_request.png">
+                    <aside class="notes">
+                        And then, in 2005, AJAX came along, and the web rejoiced. Now, website can create an HTTP request without having to reload the page. Everything today uses AJAX. Everything. Facebook uses AJAX to tell it's servers whenever you like a post or leave a comment. Twitter uses this whenever you retweet something or favorite something. AJAX is everywhere. So, you can not get information from the server, but it isn't practical for say, a chat system.
+                    </aside>
+                </section>
+                <section>
+                    <h2>HTTP Polling</h2>
+                    <img src="http://www.whitesof.com/sites/default/files/images/tutorials/web/polling.png">
+                    <aside class="notes">
+                        Then, a method called HTTP polling was introduced, and how it works is the client automatically makes an HTTP/AJAX request several times a second, sending data to the server and checking if the server has any new data. This method has its weaknesses, however. The main one is that it uses up a LOT of bandwidth, both from the client and user.
+                    </aside>
+                </section>
+                <section>
+                    <h2>WebSockets</h2>
+                    <img src="http://warmcat.com/websocket-lifecycle.png">
+                </section>
+                <aside class="notes">
+                    Now we have WebSockets, the ultimante solution to realtime bi-directional server client communication. So, let me go to the next slide to explain this in a little bit more detail.
+                </aside>
+            </section>
+
+            <section>
+                <section>
+                    <h2>The Handshake</h2>
+                    <img src="http://srchea.com/images/posts/build-a-real-time-application-using-html5-websockets/websocket-handshake.png" style="background-color: white; padding: 20px;">
+                    <aside class="notes">Every WebSockets connection begins with a handshake. The client will use JavaScrip's built in WebSockets class to connect to a WebSocket server using an HTTP request, like AJAX would do it. The client connects, telling the server who it is and a little bit about it's self, like its version, IP address, ect. The server acknowledges the connection and sends the client information telling it that to upgrate the existing HTTP connection to a WebScokets connection as well as some information to the client varifying the server is who it claims to be.</aside>
+                </section>
+                <section>
+                    <h2>The Connection</h2>
+                    <img src="http://i.umumble.com/img/topic-1312446475.jpg">
+                    <aside class="notes">
+                        Once the connection initiated, both the client and the server have the following event based functions, onOpen, onMessage, onError, and onClose. The client and server can also use a built in send function. Messages are sent in frames, which start with a 0x00 byte, have a string of text, and end with a 0xff byte. It is usually best practace to send a JSON object in the string so you can send multiple types of data in one message. That is how this presentation works.
+                    </aside>
+                </section>
+                <section>
+                    <h2>The Disconection</h2>
+                    <img src="http://i.msdn.microsoft.com/hh969243.WebSocketsStableReadyDevelopers-6(en-us,MSDN.10).jpg">
+                    <aside class="notes">
+                        Both the client or the server can close the connection. When the connection is closed, the disconnecting party lets the other know that it's leaving so that it can call it's on close method. Then it disconnects.
+                    </aside>
+                </section>
+            </section>
+
+            <section>
+                <h1>Demos</h1>
+                <aside class="notes">
+                    Okay, now that we've got that out of the way, lets get to the fun part of the presentation: Demos!
+                </aside>
+            </section>
+
+            <section>
+                <h2>Sending a message to the server</h2>
+                <input id="sendmessage" class="form">
+                <button onclick="sendMessage()" class="form">Send</button>
+                <br>
+                <br><b><p>Messages:</p></b>
+                <span id="messages" style="font-size:25px;"></span>
+            </section>
+
+            <section>
+                <section>
+                    <h2>The Code (Client)</h2>
+                    <pre><code data-trim>
+var ws = new WebSocket("ws://localhost:9008/ws");
+
+ws.onopen = function () {
+    // Web Socket is connected, send data using send()
+};
+
+ws.onmessage = function (evt) {
+    json = JSON.parse(evt.data);
+    var m = document.getElementById('messages')
+    m.innerHTML = '<b>user:</b> ' +json.chat + '<br>' + m.innerHTML
+};
+                        
+function sendMessage(){
+    if(document.getElementById('sendmessage').value == ''){
+        return;   
+    }
+    var msg = document.getElementById('sendmessage').value
+    ws.send('{"event":"sendmessage", "chat":"'+msg+'"}') 
+    document.getElementById('sendmessage').value = '';
+}
+</code></pre>
+                </section>
+                <section>
+                    <h2>The Code (Server)</h2>
+                    <pre><code data-trim>
+users = []
+
+def open(self):
+    users.append
+
+def on_message(self, message):
+    for user in users:
+        user.write_message(message)
+
+def on_close(self):
+    if self in users:
+        users.remove(self)
+                    
+</code></pre>
+                </section>
+            </section>
+
+
+            <section>
+                <h1>Any Questions?</h1>
+            </section>
+
+
+        </div>
+
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+        Reveal.initialize({
+
+            // Display controls in the bottom right corner
+            controls: false,
+
+            // Display a presentation progress bar
+            progress: false,
+
+            // Display the page number of the current slide
+            slideNumber: false,
+
+            // Push each slide change to the browser history
+            history: true,
+
+            // Enable keyboard shortcuts for navigation
+            keyboard: true, //ToDo: False
+
+            // Enable the slide overview mode
+            overview: true,
+
+            // Vertical centering of slides
+            center: true,
+
+            // Enables touch navigation on devices with touch input
+            touch: false,
+
+            // Loop the presentation
+            loop: false,
+
+            // Change the presentation direction to be RTL
+            rtl: false,
+
+            // Turns fragments on and off globally
+            fragments: true,
+
+            // Flags if the presentation is running in an embedded mode,
+            // i.e. contained within a limited portion of the screen
+            embedded: false,
+
+            // Number of milliseconds between automatically proceeding to the
+            // next slide, disabled when set to 0, this value can be overwritten
+            // by using a data-autoslide attribute on your slides
+            autoSlide: 0,
+
+            // Stop auto-sliding after user input
+            autoSlideStoppable: true,
+
+            // Enable slide navigation via mouse wheel
+            mouseWheel: false,
+
+            // Hides the address bar on mobile devices
+            hideAddressBar: true,
+
+            // Opens links in an iframe preview overlay
+            previewLinks: false,
+
+            // Transition style
+            transition: 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+            // Transition speed
+            transitionSpeed: 'default', // default/fast/slow
+
+            // Transition style for full page slide backgrounds
+            backgroundTransition: 'default', // default/none/slide/concave/convex/zoom
+
+            // Number of slides away from the current that are visible
+            viewDistance: 3,
+
+            // Parallax background image
+            parallaxBackgroundImage: '', // e.g. "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg'"
+
+            // Parallax background size
+            parallaxBackgroundSize: '', // CSS syntax, e.g. "2100px 900px"
+
+            dependencies: [
+                {
+                    src: 'lib/js/classList.js',
+                    condition: function () {
+                        return !document.body.classList;
+                    }
+                },
+                {
+                    src: 'plugin/markdown/marked.js',
+                    condition: function () {
+                        return !!document.querySelector('[data-markdown]');
+                    }
+                },
+                {
+                    src: 'plugin/markdown/markdown.js',
+                    condition: function () {
+                        return !!document.querySelector('[data-markdown]');
+                    }
+                },
+                {
+                    src: 'plugin/highlight/highlight.js',
+                    async: true,
+                    callback: function () {
+                        hljs.initHighlightingOnLoad();
+                    }
+                },
+                {
+                    src: 'plugin/zoom-js/zoom.js',
+                    async: true,
+                    condition: function () {
+                        return !!document.body.classList;
+                    }
+                },
+                {
+                    src: 'plugin/notes/notes.js',
+                    async: true,
+                    condition: function () {
+                        return !!document.body.classList;
+                    }
+                }
+            ]
+        });
+    </script>
+    <script src="js/script.js"></script>
+
+</body>
+
+</html>

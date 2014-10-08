@@ -1,0 +1,111 @@
+<!doctype html>
+<html>
+    <head>
+        <title>My Awesome Website</title>
+        <style>
+            @import url(http://fonts.googleapis.com/css?family=Oswald:400,700);
+            html,body{
+                padding: 0;
+                margin: 0;
+            }
+            
+            #headers{
+                margin: 0px auto;
+                text-align: center;
+                color: white;
+            }
+            
+            h1{
+                margin-bottom: 0px;
+                font-size: 80px;
+                font-family: 'Oswald','Arial', sans-serif;
+            }
+            
+            h2{
+                margin-top: 0px;
+                font-size: 25px;
+                font-family: 'Arial', sans-serif;
+            }
+            
+            #footer{
+                position: absolute;
+                bottom: 0;
+                width: 100%;
+                height: 20px;
+                background-color: grey;
+                border-top: 10px solid black;
+                z-index: 200;
+            }
+            
+            #background{
+                z-index: -900;
+                background-image: url('rainforest.jpg');
+                height: 100%;
+                width: 100%;
+                position: fixed;
+                -webkit-filter: blur(10px);
+                -moz-filter: blur(10px);
+                -o-filter: blur(10px);
+                -ms-filter: blur(10px);
+                filter: blur(10px);
+            }
+            
+            .btn {
+                background: #ffa66b;
+                background-image: -webkit-linear-gradient(top, #ffa66b, #ffa061);
+                background-image: -moz-linear-gradient(top, #ffa66b, #ffa061);
+                background-image: -ms-linear-gradient(top, #ffa66b, #ffa061);
+                background-image: -o-linear-gradient(top, #ffa66b, #ffa061);
+                background-image: linear-gradient(to bottom, #ffa66b, #ffa061);
+                -webkit-border-radius: 28;
+                -moz-border-radius: 28;
+                border-radius: 28px;
+                font-family: Arial;
+                color: #ffffff;
+                font-size: 45px;
+                padding: 10px 20px 10px 20px;
+                text-decoration: none;
+                width: 15%;
+                margin: 0px auto;
+            }
+            .btn:hover {
+                background: #fc6203;
+                background-image: -webkit-linear-gradient(top, #fc6203, #fa6000);
+                background-image: -moz-linear-gradient(top, #fc6203, #fa6000);
+                background-image: -ms-linear-gradient(top, #fc6203, #fa6000);
+                background-image: -o-linear-gradient(top, #fc6203, #fa6000);
+                background-image: linear-gradient(to bottom, #fc6203, #fa6000);
+                text-decoration: none;
+                cursor: pointer
+            }
+            
+            
+        </style>
+        
+        <link href="cssshake.css" rel="stylesheet">
+    </head>
+    <body>
+        <div id="background"></div>
+        <div id="headers">
+            <br><br><br><br>
+            <h1>Hello, I'm Ben!</h1>
+            <h2>(And this is my website)</h2>
+            <br><br>
+            <span id="img"></span>
+        </div>
+        <br><br>
+        
+        <div class="btn" onclick="doThingy();">Click Me!</div>
+        
+        <div id="footer"></div>
+        
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+        <script>
+            function doThingy(){
+                $('#footer').animate({height:'98%'}, 1000);
+                 
+            }
+        </script>
+        
+    </body>
+</html>

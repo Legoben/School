@@ -1,0 +1,50 @@
+html, body{
+    padding:0px;
+    margin:0px;
+    height:100%;
+    width:100%;
+}
+
+#main-header{
+    width:100%;
+    height:6%;
+    background-color:#0B610B;
+}
+
+#title{
+    display:inline-block;
+    font-size:30px;
+    color:white;
+    margin:auto;
+    margin-left:30px;
+    margin-right:30px;
+    text-decoration:none;
+    font-family: 'Lato', sans-serif;
+}
+
+td img{
+    width:100%;
+    height:335px;
+}
+
+.tooltip {
+    position: fixed;
+    width:200px;
+    height: auto;
+    background: #FFF;
+    z-index: 10;
+    display: none; 
+    color:black;
+    text-decoration:none;
+    text-align:center;
+    }
+    
+table{
+    table-layout: fixed;
+    width: 100%;
+}
+
+th, td {
+    overflow: hidden;
+    width: 33%;
+}

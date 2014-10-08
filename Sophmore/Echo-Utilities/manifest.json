@@ -1,0 +1,19 @@
+{
+"name":"Misc Echo Utilities",
+"author":"Ben Stobaugh",
+"description":"Adds slight changes to Echo to make it better.",
+"version":"1.0.6.1",
+"manifest_version":2,
+"content_scripts": [
+    {
+        "matches": ["https://echo.newtechnetwork.org/","http://echo.newtechnetwork.org/","https://echo.newtechnetwork.org/?q=ntlp/home","https://echo.newtechnetwork.org/index.php"],
+        "js": ["main.js"]
+    }
+  ],
+"web_accessible_resources": ["inject-raw.js","konami.js","options.html"],
+"permissions": ["cookies","http://echo.newtechnetwork.org/","https://echo.newtechnetwork.org/"],
+"icons": { "16": "icon16.png",
+           "48": "icon48.png",
+          "128": "icon128.png" },
+"short_name": "Echo Utility"
+}
