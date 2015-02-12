@@ -1,11 +1,13 @@
 /* 
-MADE BY BEN STOBAUGH - Ben@BenS.li
+MADE BY BEN STOBAUGH - ben@helloben.co
 
 THIS EXTENSION IS NOT AFFILIATED OR ENDORSED BY NEWTECHNETWORK OR KNOWLEGEWORKS
 */
 
 
+
 $('.panel-feature').remove(); //Hide that in-the-way featured panel
+$(".item-block.course-block.term-header").remove();
 $('body').append($('#uid'))
 
 function setCookie(cname, cvalue, exdays) { //Generic set cookie function
